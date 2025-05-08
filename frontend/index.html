@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EletroIA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="holo-background">
+    <canvas id="holoCanvas"></canvas>
+  </div>
+  <div class="container">
+    <h1>EletroIA</h1>
+    <label for="userInput" class="sr-only">Digite sua dúvida</label>
+    <textarea id="userInput" rows="5" placeholder="Digite sua dúvida..."></textarea>
+    <div class="button-group">
+      <button id="voiceBtn">Iniciar Voz</button>
+      <button onclick="consultarIA()">Consultar IA</button>
+      <button id="stopVoiceBtn">Parar Voz</button>
+    </div>
+    <div id="resposta"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
