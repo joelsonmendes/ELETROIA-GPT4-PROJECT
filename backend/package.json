@@ -1,17 +1,17 @@
 {
-  "name": "eletroia-backend",
+  "name": "backend",
   "version": "1.0.0",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "express-rate-limit": "^7.5.0",
-    "helmet": "^8.1.0",
-    "node-fetch": "^3.3.2"
+    "dotenv": "^16.0.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^6.0.5",
+    "helmet": "^6.0.0",
+    "node-fetch": "^2.6.1",
+    "serverless-http": "^3.0.0"
   }
 }

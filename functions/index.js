@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const serverless = require('serverless-http');
 
 const app = express();
 
@@ -19,4 +20,4 @@ app.post('/ia', async (req, res) => {
   res.json({ resposta });
 });
 
-module.exports = app;
+module.exports = serverless(app);

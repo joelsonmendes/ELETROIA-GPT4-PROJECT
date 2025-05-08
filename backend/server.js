@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import fetch from "node-fetch";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
+import serverless from "serverless-http";
 
 dotenv.config();
 
@@ -91,4 +92,4 @@ app.post("/ia", async (req, res) => {
   }
 });
 
-export default app;
+export default serverless(app);
