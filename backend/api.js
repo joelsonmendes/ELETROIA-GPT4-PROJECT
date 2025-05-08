@@ -63,6 +63,11 @@ app.post("/ia", async (req, res) => {
   }
 
   try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => {
+      controller.abort();
+    }, 8000); // Timeout de 8 segundos
+
     const resposta = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -73,8 +78,11 @@ app.post("/ia", async (req, res) => {
         model: process.env.GROQ_MODEL || "mixtral-8x7b-32768",
         messages: [{ role: "user", content: mensagem }],
         temperature: 0.7
-      })
+      }),
+      signal: controller.signal
     });
+
+    clearTimeout(timeout);
 
     if (!resposta.ok) {
       const erroTexto = await resposta.text();
@@ -87,8 +95,13 @@ app.post("/ia", async (req, res) => {
     res.json({ resposta: respostaIA });
 
   } catch (erro) {
-    console.error("Erro ao consultar a IA:", erro);
-    res.status(500).json({ erro: "Erro interno no servidor." });
+    if (erro.name === 'AbortError') {
+      console.error("Erro: requisição para API externa abortada por timeout.");
+      res.status(504).json({ erro: "Timeout na requisição para a API externa." });
+    } else {
+      console.error("Erro ao consultar a IA:", erro);
+      res.status(500).json({ erro: "Erro interno no servidor." });
+    }
   }
 });
 
