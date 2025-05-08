@@ -216,7 +216,7 @@ async function consultarIA(userInputParam) {
   }
 
   try {
-    const response = await fetch("/api/banckend/ia", {
+    const response = await fetch("/api/backend/ia", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ mensagem: userInput })
