@@ -1,31 +1,35 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "frontend/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "backend/server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "functions/index.js",
-      "use": "@vercel/node"
-    }
+  {
+  "src": "frontend/**/",
+  "use": "@vercel/static"
+  },
+  {
+  "src": "backend/server.js",
+  "use": "@vercel/node"
+  },
+  {
+  "src": "functions/index.js",
+  "use": "@vercel/node"
+  }
   ],
   "routes": [
-    {
-      "src": "/api/backend/(.*)",
-      "dest": "/backend/server.js"
-    },
-    {
-      "src": "/api/functions/(.*)",
-      "dest": "/functions/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/frontend/$1"
-    }
+  {
+  "src": "/api/ia",
+  "dest": "/backend/server.js"
+  },
+  {
+  "src": "/api/backend/(.)",
+  "dest": "/backend/server.js"
+  },
+  {
+  "src": "/api/functions/(.)",
+  "dest": "/functions/index.js"
+  },
+  {
+  "src": "/(.)",
+  "dest": "/frontend/$1"
+  }
   ]
-}
+  }
