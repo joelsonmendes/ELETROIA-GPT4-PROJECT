@@ -216,7 +216,7 @@ async function consultarIA(userInputParam) {
   }
 
   try {
-    const response = await fetch("https://your-vercel-backend-url/api/ia", {
+    const response = await fetch("https://eletroia-gpt-4-project.vercel.app/api/ia", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ mensagem: userInput })
