@@ -223,13 +223,14 @@ async function consultarIA(userInputParam) {
     });
 
     if (!response.ok) {
-      // Try to parse error response as JSON, fallback to text
+      // Clone response to read body multiple times safely
+      const responseClone = response.clone();
       let errorMsg = "Erro na requisição";
       try {
-        const errorData = await response.json();
+        const errorData = await responseClone.json();
         errorMsg = errorData.erro || errorMsg;
       } catch {
-        const errorText = await response.text();
+        const errorText = await responseClone.text();
         errorMsg = errorText || errorMsg;
       }
       respostaDiv.innerHTML = `Erro: ${errorMsg}`;
