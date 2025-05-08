@@ -222,14 +222,22 @@ async function consultarIA(userInputParam) {
       body: JSON.stringify({ mensagem: userInput })
     });
 
-    const data = await response.json();
-
     if (!response.ok) {
-      const errorMsg = data.erro || "Erro na requisição";
+      // Try to parse error response as JSON, fallback to text
+      let errorMsg = "Erro na requisição";
+      try {
+        const errorData = await response.json();
+        errorMsg = errorData.erro || errorMsg;
+      } catch {
+        const errorText = await response.text();
+        errorMsg = errorText || errorMsg;
+      }
       respostaDiv.innerHTML = `Erro: ${errorMsg}`;
       consultarBtn.disabled = false;
       return;
     }
+
+    const data = await response.json();
 
     respostaDiv.innerHTML = `<strong>Resposta da IA:</strong><br>${data.resposta}`;
     document.getElementById("userInput").value = "";
