@@ -6,7 +6,7 @@
   "use": "@vercel/static"
   },
   {
-  "src": "backend/server.js",
+  "src": "api/backend.js",
   "use": "@vercel/node"
   },
   {
@@ -17,11 +17,11 @@
   "routes": [
   {
   "src": "/api/ia",
-  "dest": "/backend/server.js"
+  "dest": "/api/backend.js"
   },
   {
   "src": "/api/backend/(.)",
-  "dest": "/backend/server.js"
+  "dest": "/api/backend.js"
   },
   {
   "src": "/api/functions/(.)",
